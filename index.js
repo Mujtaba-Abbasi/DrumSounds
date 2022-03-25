@@ -1,9 +1,10 @@
 var size = document.querySelectorAll(".drum").length;
 
 function mouseClicked() {
-    this.style.color = "White";
+
     var innerHtmlCode = this.innerHTML;
     keyboardStroke(innerHtmlCode);
+    animationOnClick(innerHtmlCode);
 }
 function keyboardStroke(key) {
     switch (key) {
@@ -42,5 +43,16 @@ for (var i = 0; i < size; i++) {
 }
 document.addEventListener("keypress", function (event) {
     keyboardStroke(event.key);
-
+    animationOnClick(event.key);
 });
+function animationOnClick(currentKey) {
+    var buttonToAnimate = document.querySelector("." + currentKey);
+    buttonToAnimate.classList.add("pressed");
+    buttonToAnimate.classList.add("drum-color");
+
+    setTimeout(function () {
+
+        buttonToAnimate.classList.remove("pressed");
+        buttonToAnimate.classList.remove("drum-color");
+    }, 100);
+}
